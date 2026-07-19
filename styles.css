@@ -1,0 +1,290 @@
+/* ============================================
+   TOKENS & RESET
+   ============================================ */
+:root {
+  --tile: #edf0ee;     
+  --paper: #fbfaf5;    
+  --ink: #1f2a24;      
+  --pine: #2c4a3b;     
+  --pine-light: #3d6350;
+  --amber: #c97b12;    
+  --line: #c7d0cb;     
+  --sidebar-paper: #f9f6ef; 
+
+  --font-display: "Oswald", sans-serif;
+  --font-body: "Source Sans 3", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+
+  --radius: 3px;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--tile);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+ul { margin: 0; padding: 0; list-style: none; }
+a { color: inherit; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; margin: 0; }
+p { margin: 0; }
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: auto;
+  background: var(--pine);
+  color: var(--paper);
+  padding: 0.75rem 1.25rem;
+  z-index: 100;
+  border-radius: var(--radius);
+}
+.skip-link:focus { left: 1rem; top: 1rem; }
+a:focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; }
+
+/* ============================================
+   LAYOUT GRID (The Magic)
+   ============================================ */
+.resume-layout {
+  max-width: 1000px;
+  margin: 2.5rem auto 1rem;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 0 2rem;
+  align-items: start;
+}
+
+.site-header {
+  display: contents; /* Allows children to act as grid items */
+}
+
+/* Header Main Area (Right Column) */
+.header-main {
+  grid-column: 2;
+  grid-row: 1;
+  padding-top: 1rem;
+}
+
+.header-main h1 {
+  font-size: clamp(2.25rem, 5vw, 3.25rem);
+  font-weight: 600;
+  color: var(--pine);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.header-main .objective {
+  font-size: 1.1rem;
+  color: var(--pine-light);
+  margin-bottom: 1.5rem;
+}
+
+.main-divider {
+  border: 0;
+  border-top: 2px solid var(--pine);
+  margin-bottom: 2rem;
+}
+
+/* Header Sidebar Area (Left Column Top) */
+.header-sidebar {
+  grid-column: 1;
+  grid-row: 1;
+  background: var(--sidebar-paper);
+  padding: 1.5rem;
+  border: 1px solid var(--line);
+  border-bottom: none;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.profile-pic-slot {
+  width: 100%;
+  aspect-ratio: 1;
+  background-color: var(--paper);
+  border-radius: 50%;
+  margin-bottom: 2rem;
+  background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22200%22%20height%3D%22200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Ccircle%20cx%3D%22100%22%20cy%3D%22100%22%20r%3D%22100%22%20fill%3D%22%23edf0ee%22%2F%3E%3Cpath%20d%3D%22M100%20110.1a20.1%2020.1%200%201%201%2020.1-20.1%2020.1%2020.1%200%200%201-20.1%2020.1zM100%20167.6a67.6%2067.6%200%200%201-67.6-67.6%2067.6%2067.6%200%200%201%20135.2%200%2067.6%2067.6%200%200%201-67.6%2067.6z%22%20fill%3D%22%23dce6e0%22%2F%3E%3C%2Fsvg%3E');
+  background-size: cover;
+}
+
+.header-sidebar h2, .sidebar-skills h2 {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--pine);
+  margin-bottom: 1rem;
+}
+
+.header-sidebar address p {
+  margin-bottom: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.95rem;
+  font-style: normal;
+}
+
+.header-sidebar address a { text-decoration: none; }
+
+/* Sidebar Skills Area (Left Column Bottom) */
+.sidebar-skills {
+  grid-column: 1;
+  grid-row: 2;
+  background: var(--sidebar-paper);
+  padding: 0 1.5rem 1.5rem;
+  border: 1px solid var(--line);
+  border-top: none;
+  border-radius: 0 0 var(--radius) var(--radius);
+}
+
+.skills-list li {
+  font-size: 0.95rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed var(--line);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.skills-list li:last-child { border-bottom: none; }
+.skills-list li::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--amber);
+  flex-shrink: 0;
+}
+
+/* ============================================
+   MAIN CONTENT
+   ============================================ */
+#main {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+main section + section { margin-top: 2.75rem; }
+
+main h2 {
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--pine);
+  padding-bottom: 0.6rem;
+  border-bottom: 2px solid var(--pine);
+  margin-bottom: 1.5rem;
+}
+
+/* Job & Education Articles */
+.ticket {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--amber); /* Changed to left border for cleaner look */
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.ticket-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.role-info h3 {
+  display: inline;
+  font-size: 1.15rem;
+  color: var(--pine);
+}
+
+.role-info .divider, .role-info .location {
+  font-size: 1.05rem;
+  color: #5c6b62;
+  font-weight: 500;
+}
+
+.time-info time, .time-info {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--pine);
+}
+
+.school-location {
+  font-size: 0.85rem;
+  color: #5c6b62;
+  margin-top: 0.25rem;
+}
+
+.ticket ul {
+  margin-top: 0.75rem;
+  border-top: 1px dashed var(--line);
+  padding-top: 0.75rem;
+}
+
+.ticket ul li {
+  font-size: 0.95rem;
+  padding-left: 1.1rem;
+  position: relative;
+  margin-bottom: 0.4rem;
+}
+
+.ticket ul li::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  color: var(--amber);
+}
+
+/* Certifications */
+.certification-item h3 {
+  font-size: 1.1rem;
+  color: var(--pine);
+  margin-bottom: 0.25rem;
+}
+.certification-item p {
+  font-size: 0.95rem;
+  color: #5c6b62;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+footer {
+  max-width: 1000px;
+  margin: 2rem auto 0;
+  padding: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: #5c6b62;
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+
+footer a { color: var(--pine); text-decoration: none; border-bottom: 1px solid currentColor;}
+footer .legal { margin-top: 0.5rem; opacity: 0.75; }
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 760px) {
+  .resume-layout { grid-template-columns: 1fr; }
+  .header-main { grid-column: 1; grid-row: 1; }
+  .header-sidebar { 
+    grid-column: 1; 
+    grid-row: 2; 
+    border-radius: var(--radius) var(--radius) 0 0;
+    margin-top: 1.5rem;
+  }
+  .sidebar-skills { grid-column: 1; grid-row: 3; }
+  #main { grid-column: 1; grid-row: 4; margin-top: 2rem;}
+}
