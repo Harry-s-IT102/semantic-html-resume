@@ -110,8 +110,16 @@ a:focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; }
   background-color: var(--paper);
   border-radius: 50%;
   margin-bottom: 2rem;
-  background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22200%22%20height%3D%22200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Ccircle%20cx%3D%22100%22%20cy%3D%22100%22%20r%3D%22100%22%20fill%3D%22%23edf0ee%22%2F%3E%3Cpath%20d%3D%22M100%20110.1a20.1%2020.1%200%201%201%2020.1-20.1%2020.1%2020.1%200%200%201-20.1%2020.1zM100%20167.6a67.6%2067.6%200%200%201-67.6-67.6%2067.6%2067.6%200%200%201%20135.2%200%2067.6%2067.6%200%200%201-67.6%2067.6z%22%20fill%3D%22%23dce6e0%22%2F%3E%3C%2Fsvg%3E');
-  background-size: cover;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-pic-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .header-sidebar h2, .sidebar-skills h2 {
